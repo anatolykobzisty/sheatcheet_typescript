@@ -72,7 +72,7 @@ collection = ["hello", 10];
 console.log(collection[0].substr(1));
 ```
 
-- Enum - перечисления
+- Enum - перечисления. Полезно использовать, когда нужно ограничить область значений, которая сможет принимать переменная, являющееся типом данного enum-а.
 
 ```typescript
 enum Color {
@@ -83,6 +83,7 @@ enum Color {
 let c: Color = Color.Green;
 console.log(c); // 1
 
+// Числовой enum
 enum ColorList {
   Red = 1,
   Green,
@@ -98,6 +99,35 @@ enum ColorsData {
 }
 let colorName: string = ColorsData[2];
 console.log(colorName); // Green
+
+// Строковый enum
+enum ColorList {
+  Red = 'RED,
+  Green = GREEN',
+  Blue = 'BLUE',
+}
+
+// Гетерогенный enum
+enum Decision {
+  Yes = 1,
+  No = 'NO',
+}
+
+// Обратный мапинг - получение строкового значения какого-то из enum-ом
+enum Test {
+  A
+}
+
+let test = Test.A;
+let nameA = Test[test] // A
+
+// Констовый enum - экономия ресурсов при компиляции
+const enum ConstEnum {
+  A,
+  B
+}
+
+let a = ConstEnum.A; // при компиляции в Js получаем var a = 0;
 ```
 
 - Any - произвольный тип
