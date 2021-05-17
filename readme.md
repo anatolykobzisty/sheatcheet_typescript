@@ -61,7 +61,7 @@ let list: number[] = [1, 2, 3];
 let anotherList: Array<number> = [1, 2, 3];
 ```
 
-- Tuple - кортежи
+- Tuple - кортежи. Используются для хранения значений разных типов в некотором массиве.
 
 ```typescript
 let data: [string, number];
