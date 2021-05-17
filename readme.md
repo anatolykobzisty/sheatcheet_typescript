@@ -2,6 +2,7 @@
 
 - [Преимущества TS](#Преимущества-TS)
 - [Базовые типы](#Базовые-типы)
+- [Литеральные типы](#Литеральные-типы)
 - [Объявление переменных](#Объявление-переменных)
 - [Функции](#Функции)
 - [Дженерики](#Дженерики)
@@ -45,7 +46,11 @@ let color: string = "blue";
 var fullName = "Bob Bobbington";
 var age = 37;
 var sentence =
-  "Hello, my name is " + fullName + ".\nI'll be " + (age + 1) + " years old next month.";
+  "Hello, my name is " +
+  fullName +
+  ".\nI'll be " +
+  (age + 1) +
+  " years old next month.";
 ```
 
 - Array
@@ -163,6 +168,21 @@ let size: number = (value as string).length;
 console.log(size); // 5
 ```
 
+### Литеральные типы
+
+```typescript
+type actionType = "up" | "down";
+
+function performAction(action: actionType): 1 | -1 {
+  switch (action) {
+    case "up": // строковый литеральный тип
+      return 1; // нумирический литеральный тип
+    case "down": // строковый литеральный тип
+      return -1; // нумирический литеральный тип
+  }
+}
+```
+
 [назад](#Шпаргалка-по-Typescript)
 
 ### Объявление переменных
@@ -272,7 +292,10 @@ let result2 = buildName("Oliver", "Black");
 
 ```typescript
 // Типизация массива из rest оператора кортежем
-function buildLetters(firstLetter: string, ...restOfLetters: [string, string, string]) {
+function buildLetters(
+  firstLetter: string,
+  ...restOfLetters: [string, string, string]
+) {
   return firstLetter + " " + restOfLetters.join(" ");
 }
 
@@ -888,7 +911,10 @@ interface SquareConfig {
   width?: number;
 }
 
-const createSquare = function (config: SquareConfig): { color: string; area: number } {
+const createSquare = function (config: SquareConfig): {
+  color: string;
+  area: number;
+} {
   return { color: "s", area: 1 };
 };
 
@@ -986,7 +1012,11 @@ interface ClockInterface {
 }
 
 // Типизация фабрики
-function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+function createClock(
+  ctor: ClockConstructor,
+  hour: number,
+  minute: number
+): ClockInterface {
   return new ctor(hour, minute);
 }
 
@@ -1198,7 +1228,11 @@ new Greeter("User");
 ```typescript
 // Декорирование функции
 const enumerable = function (value: boolean) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
     descriptor.enumerable = value;
   };
 };
@@ -1792,7 +1826,10 @@ if (typeof response === "string") {
 
 // Guard
 function isComment(type: unknown): type is IComment {
-  return (<IComment>type).message !== undefined && (<IComment>type).date !== undefined;
+  return (
+    (<IComment>type).message !== undefined &&
+    (<IComment>type).date !== undefined
+  );
 }
 ```
 
